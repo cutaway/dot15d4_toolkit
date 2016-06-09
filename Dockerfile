@@ -8,7 +8,9 @@ FROM ubuntu:14.04
 MAINTAINER cutawaysecurity@gmail.com
 
 # Quick update
+WORKDIR /
 RUN apt-get update
+RUN apt-get upgrade
 
 # Install basic functionality for configuring and running tools
 RUN apt-get install -y vim ipython git mercurial wget screen usbutils tcpdump tshark
