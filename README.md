@@ -12,4 +12,15 @@ The Dockerfile contains the instructions to build a Docker image containing tool
 ** zbdump_display2 - an update of zbdump that displays packets to STDOUT so that you know the tool is capturing packets.
 ** zbanalyzer - a tool to leverage Cutaway's update Scapy-com ZigBee layer to leverage Scapy-style output of ZigBee communications.
 
+## Helpful Notes
+### Docker Shells
+To get a shell on a Docker container you can use the built in mechanisms provide through Kitematic. However, on Windows, this opens a shell in the PowerShell terminal. While robust, the PowerShell terminal does not handle output from the Docker terminals well. Therefore I recommend using a different terminal, such as Cygwin, to access the container.
+
+1. SSH to Docker IP Address: ```ssh docker@192.168.99.100```
+2. Open terminal to Docker Container: ```docker exec -i -t <image_id> /bin/bash```
+3. Leverage screen to provide logs and better shell interactions: ```docker exec -i -t <image_id> bash -c "exec >/dev/tty 2>/dev/tty </dev/tty && /usr/bin/screen -s /bin/bash"```
+
+## References
+* Using Screen in docker: https://github.com/docker/docker/issues/728
+* Connect to a container: http://stackoverflow.com/questions/17903705/is-it-possible-to-start-a-shell-session-in-a-running-container-without-ssh
 

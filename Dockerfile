@@ -14,6 +14,13 @@ RUN apt-get update
 RUN apt-get install -y vim ipython git mercurial wget screen usbutils tcpdump tshark
 WORKDIR /root
 RUN wget https://gist.githubusercontent.com/cutaway/d69c1dcc868eb1896998/raw/3126fdf17cd911b1ead61b295d76dfb541ada26d/.vimrc
+RUN wget https://gist.githubusercontent.com/cutaway/0ddfd31d993bf2f71378/raw/172f53c51a241fc9422df8b5cfc984d98ccd8ebf/.screenrc
+RUN sed -i 's/home\/<user>/root/' .screenrc
+RUN sed -i 's/shell -\${SHELL}/shell \/bin\/bash/' .screenrc
+RUN mkdir screen_logs
+# NOTE: To leverage screen within a Docker container shell use the following command
+#       after SSHing to the docker machine.
+# docker exec -i -t <image_id> bash -c "exec >/dev/tty 2>/dev/tty </dev/tty && /usr/bin/screen -s /bin/bash"
 
 # Install Scapy-com from cutaway
 RUN apt-get install -y python-gtk2 python-cairo python-usb python-crypto python-serial python-dev libgcrypt-dev
