@@ -11,7 +11,7 @@ MAINTAINER cutawaysecurity@gmail.com
 RUN apt-get update
 
 # Install basic functionality for configuring and running tools
-RUN apt-get install -y vim ipython git mercurial wget screen usbutils
+RUN apt-get install -y vim ipython git mercurial wget screen usbutils tcpdump tshark
 WORKDIR /root
 RUN wget https://gist.githubusercontent.com/cutaway/d69c1dcc868eb1896998/raw/3126fdf17cd911b1ead61b295d76dfb541ada26d/.vimrc
 
@@ -40,3 +40,10 @@ WORKDIR /root/Tools
 RUN git clone https://github.com/joswr1ght/killerzee.git
 WORKDIR /root/Tools/killerzee
 RUN python setup.py install
+
+# Install Zigbee Tools
+WORKDIR /root/Tools
+RUN git clone https://github.com/inguardians/zigbee_tools.git
+
+# Reset Working Directory
+WORKDIR /root
